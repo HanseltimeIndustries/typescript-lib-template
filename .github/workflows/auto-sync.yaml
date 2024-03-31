@@ -10,7 +10,6 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    environment: auto-sync
     steps:
       # Create git client with PAT that has access to the private template
       - uses: actions/checkout@v4
@@ -20,9 +19,6 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-      - name: install
-        run: |
-          npm ci
       - name: sync-repos
         uses: hanseltimeindustries/template-repo-sync-action@v1
         with:
