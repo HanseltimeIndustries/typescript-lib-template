@@ -17,6 +17,10 @@ jobs:
     needs: call-test-workflow
 
     steps:
+      - name: Remove this after template
+        run: |
+          echo "Remove this step after updating your package.json with the correct information"
+          exit 1
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.RELEASE_PAT }}
