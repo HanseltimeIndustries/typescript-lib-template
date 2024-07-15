@@ -10,11 +10,13 @@
   "exports": {
     "types": "./dist/types/index.d.ts",
     "require": "./dist/cjs/index.js",
-    "import": "./dist/esm/index.js",
+    "import": "./dist/esm/index.mjs",
     "default": "./dist/esm/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "dist-bin",
+    "README.md"
   ],
   "devDependencies": {
     "@commitlint/config-angular": "^18.4.3",
@@ -25,7 +27,8 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "commitlint": "^18.4.3",
-    "eslint": "^8.56.0",
+    "esbuild": "^0.21.5",
+    "eslint": "9.x",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
@@ -35,15 +38,17 @@
     "semantic-release": "^22.0.12",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^7.13.1"
   },
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:esm": "tsc -p tsconfig.esm.json && yarn swap-file-exts --dir dist/esm --from .js --to .mjs && yarn esm-import-resolve-extensions --dir dist/esm --ext .mjs",
     "build:types": "tsc -p tsconfig.types.json",
     "build": "tsc -b tsconfig.cjs.json tsconfig.esm.json tsconfig.types.json",
+    "build-bin": "esbuild src/bin/* --bundle --platform=node --target=node20 --outdir=dist-bin --banner:js=\"#!/usr/bin/env node\"",
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
