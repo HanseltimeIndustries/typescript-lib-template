@@ -81,17 +81,18 @@ Our unit tests should mock all outbound client libraries and simply focus progra
 
 #### Linting
 
-We make use of [eslint](https://eslint.org/eslint) and [prettier](https://prettier.io/) to ensure formatting and additional lint rules.
+We make use of [biome](https://biomejs.dev) to ensure formatting and additional lint rules.
 
 You can run:
 
 ```shell
 yarn lint --fix
+yarn format --fix
 ```
 
 To automatically change any immediately fixable problems and see the others reported.
 
-Additionally, it is recommended that you integrate eslint IDE support for better visibility while writing the code.
+Additionally, it is recommended that you integrate biome IDE support for better visibility while writing the code.
 
 #### Typescript
 
