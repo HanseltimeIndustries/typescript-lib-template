@@ -1,10 +1,10 @@
 {
     "$schema": "https://swc.rs/schema.json",
     "jsc": {
-        "target": "es6",
-        "parser": {
-            "syntax": "typescript",
-        }
+        "baseUrl": "./",
+        "experimental": {
+            "plugins": [["@hanseltime/swc-plugin-node-globals-inject", {}]]
+        },
     },
     // Since we use tswc most of the other options are mapped from tsconfig.  
     // We just override differences or exotic properties here
@@ -14,7 +14,4 @@
         "resolveFully": true,
         "outFileExtension": "mjs"
     },
-    "jsc": {
-        "baseUrl": "./",
-    }
 }

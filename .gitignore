@@ -5,14 +5,19 @@
 !.yarn/sdks
 !.yarn/versions
 
-# Swap the comments on the following lines if you don't wish to use zero-installs
-# Documentation here: https://yarnpkg.com/features/zero-installs
-# !.yarn/cache
+# Swap the comments on the following lines if you wish to use zero-installs
+# In that case, don't forget to run `yarn config set enableGlobalCache false`!
+# Documentation here: https://yarnpkg.com/features/caching#zero-installs
+
+#!.yarn/cache
 .pnp.*
+node_modules
 
 dist/
-dist-bin/
-node_modules/
 
-# tswc creates temporary config files
+# swc tooling
+.swc/
 .swcrc_from_tsconfig*
+
+# mkdocs site generation for local dev
+site/
