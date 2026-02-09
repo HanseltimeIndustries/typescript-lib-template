@@ -159,3 +159,22 @@ can perform direct actions on release branches.
 Important! - Before you enable the github pages application, make sure to push an empty branch to gh-pages.
 Do not push a clone of main, as we actually want dissociated branch histories (since we will be building things
 that are normally gitignored). 
+
+# NPM Release
+
+NPM no longer allows PATs in their publishing flows.  Because of this, you need to do set up OIDC trust with this
+Github Repository.
+
+Unfortunately, you need to first publish an npm package to set up OIDC.
+
+For your first time, you want to go ahead and get an NPM token for yourself and run at least an `npm publish --publish`
+with the version set to 0.1.0.  This is strictly a throw away version.
+
+Once you have published successfully, you will want to go to the package page on NPM and select `settings -> Github Actions OIDC`
+
+Fill in:
+
+* Your Repository address
+* `release.yaml` as the workflow file
+
+Once you've done this, you should be able to do normal releasing.
